@@ -1,6 +1,7 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
-const cookieParser = require('cookie-parser')
+const cors = require('cors');
+
 
 
 
@@ -40,13 +41,18 @@ const list = [
 ]
 
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-app.use(cookieParser())
+// app.use(express.urlencoded({ extended: true }))
+app.use(function (req, res, next) {
+    req.headers['content-type'] = 'application/json';
+    next();
+});
 
+app.use(express.json())
+app.use(cors());
+app.options('*', cors());
 
 app.get('/list', function (req, res) {
-    if (req.cookies && req.cookies.token && tokens.includes(req.cookies.token)) {
+    if (req.headers && req.headers.token && tokens.includes(req.headers.token)) {
         res.json(list)
     } else {
         res.status(401).json({ error: 'دسترسی غیر مجاز!' })
@@ -55,18 +61,15 @@ app.get('/list', function (req, res) {
 
 app.post('/login', function (req, res) {
     const { body } = req;
-
     if (!body.hasOwnProperty('username') || !body.hasOwnProperty('password')) {
-        res.status(400).json({ error: '.داده ارسالی شما باید شامل نام کاربری و کلمه عبور باشد' })
+        res.status(400).json({ error: '.داده ارسالی باید شامل نام کاربری و کلمه عبور باشد' })
         return
     }
 
     if (body.username === 'part' && body.password === '123456') {
         const token = uuidv4();
         tokens.push(token);
-
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify({ token }));
+        res.json({ token })
     } else {
         res.status(403).json({ error: 'نام کاربری یا کلمه عبور اشتباه است.' })
         return
@@ -74,9 +77,16 @@ app.post('/login', function (req, res) {
 
 })
 
+app.get('/easy-uuid', function (req, res) {
+        res.json(uuidv4())
+})
+
+app.get('/easy-list', function (req, res) {
+    res.json(list)
+})
+
 app.get('*', function (req, res) {
     res.status(404).json({ error: 'invalid request' })
-
 })
 
 app.listen(process.env.PORT || port, () => {
