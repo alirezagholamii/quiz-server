@@ -16,6 +16,7 @@ const list = [
         isAnswered: true
     },
     {
+        id: 'fxx295',
         name: 'پرسشنامه اطلاعات عمومی',
         count: 30,
         isAnswered: false
@@ -83,6 +84,10 @@ app.get('/easy-uuid', function (req, res) {
 
 app.get('/easy-list', function (req, res) {
     res.json(list)
+})
+
+app.get('/easy-all-tokens', function (req, res) {
+    res.json({tokensLength:tokens.length})
 })
 
 app.get('*', function (req, res) {
