@@ -37,7 +37,74 @@ const list = [
         count: 1,
         isAnswered: false
     },
-]
+    {
+        id: 'hbzs95',
+        name: 'هدف فرهنگ و هنر',
+        count: 25,
+        isAnswered: true
+    },
+    {
+        id: 'fxu295a',
+        name: 'آبان و سایر اطلاعات',
+        count: 21,
+        isAnswered: true
+    },
+    {
+        id: 'ntz805',
+        name: 'تجربه کاربر',
+        count: 61,
+        isAnswered: false
+    },
+    {
+        id: 'asw856',
+        name: 'سوال تخصصی',
+        count: 16,
+        isAnswered: false
+    },
+    {
+        id: 'cw8711',
+        name: 'نظریه فضا و زمان',
+        count: 5,
+        isAnswered: false
+    },
+
+    {
+        id: 'zxzs95',
+        name: 'محصولات سالم',
+        count: 20,
+        isAnswered: false
+    },
+    {
+        id: 'zxu299',
+        name: 'سال 2000',
+        count: 22,
+        isAnswered: true
+    },
+    {
+        id: 'nbb005',
+        name: 'تجربه مستمر',
+        count: 50,
+        isAnswered: false
+    },
+    {
+        id: 'azz806',
+        name: 'سوال غیر تخصصی',
+        count: 16,
+        isAnswered: false
+    },
+    {
+        id: 'cz8111',
+        name: 'نظریه فضا و مکان',
+        count: 10,
+        isAnswered: true
+    },
+    {
+        id: 'xzo191',
+        name: 'سوال پایانی',
+        count: 10,
+        isAnswered: false
+    },
+];
 
 const users = [
     {
